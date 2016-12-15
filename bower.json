@@ -1,0 +1,36 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "dependencies": {
+    "angular": "1.4.2",
+    "bootstrap": "~3.1.1",
+    "jquery": "~2.1.0",
+    "angular-route": "~1.2.24",
+    "angular-animate": "~1.2.24",
+    "jquery-ui": "~1.11.4",
+    "angular-ui-router": "~0.2.15",
+    "angular-bootstrap": "~0.14.3",
+    "normalize-css": "normalize.css#~3.0.3",
+    "bootstrap-less": "~3.3.4",
+    "auth0-lock": "^10.7.2",
+    "angular-lock": "^1.0.5",
+    "angular-jwt": "^0.1.8",
+    "underscore": "^1.8.3",
+    "angular-underscore-module": "^1.0.3"
+  },
+  "homepage": "",
+  "authors": [
+    "Oleg Syrbu"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/main/webapp/bower_components",
+    "test",
+    "tests"
+  ]
+}

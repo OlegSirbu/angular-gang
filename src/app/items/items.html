@@ -1,0 +1,93 @@
+<div ui-view>
+    <div class="container">
+        <h2 class="header-page">
+            HTML preview of the gang
+        </h2>
+
+        <div class="row wrap">
+
+            <div class="col-xs-3">
+                <div class="list-group">
+                    <div class="bs-sidebar list-group">
+                        <ul class="nav nav-pills nav-stacked">
+                            <li class="list-group-item" ng-repeat="item in vm.items">
+                                <a ng-click="vm.changeItem(item)">{{item.name}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <ul ng-if="vm.pager.pages.length" class="pagination">
+                    <li ng-class="{disabled:vm.pager.currentPage === 1}">
+                        <a ng-click="vm.setPage(vm.pager.currentPage - 1)">Previous</a>
+                    </li>
+                    <li ng-repeat="page in vm.pager.pages" ng-class="{active:vm.pager.currentPage === page}">
+                        <a ng-click="vm.setPage(page)">{{page}}</a>
+                    </li>
+                    <li ng-class="{disabled:vm.pager.currentPage === vm.pager.totalPages}">
+                        <a ng-click="vm.setPage(vm.pager.currentPage + 1)">Next</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-xs-9">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Gang name: {{vm.selectedItem.name}}</h3>
+                    </div>
+
+                    <div class="panel-body">
+
+                        <div class="image-preview">
+                            <img src="img/prev.png" alt="">
+                            <!--<img ng-src="{{vm.selectedItem.link}}" alt="">-->
+                        </div>
+
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-success" ng-click="vm.approveCallback()">Accept
+                                </button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-warning" ng-click="vm.declineCallback()">Decline
+                                </button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-danger" ng-click="vm.rejectCallback()">Reject
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Description</h3>
+                    </div>
+                    <div class="panel-body">
+
+                    </div>
+                </div>
+
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">List of print items on the gang</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item img-block" ng-repeat="pItem in vm.selectedItem.printItems">
+                                <img ng-src="{{pItem}}" alt="">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
