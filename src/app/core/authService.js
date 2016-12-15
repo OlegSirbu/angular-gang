@@ -7,15 +7,6 @@
         .service('authService', authService);
 
     function authService($location, authManager) {
-
-        // "auth0user": "cimpress.test@levi9.com",
-        //     "auth0password": "123456",
-        //     "auth0clientId": "JyQUHwycwwUQ79Q9XuRBsBe7GefpYs06",
-        //     "auth0domain": "levi9-test.auth0.com",
-        //     "auth0connection": "Username-Password-Authentication"
-
-        // "auth0user": "cimpress.test@levi9.com",
-        //     "auth0password": "123456",
         
         var auth0 = new Auth0({
             domain: 'levi9-test.auth0.com',
@@ -43,21 +34,11 @@
             // }, callback);
         }
 
-        function signup(username, password, callback) {
-            auth0.signup({
-                // connection: 'Username-Password-Authentication',
-                responseType: 'token',
-                email: username,
-                password: password
-            }, callback);
-        }
-
-        // Logging out just requires removing the user's
-        // id_token and profile
         function logout() {
             localStorage.removeItem('id_token');
             localStorage.removeItem('profile');
             authManager.unauthenticate();
+            $location.path('/login');
         }
 
         function authenticateAndGetProfile() {
@@ -82,8 +63,7 @@
         return {
             login: login,
             logout: logout,
-            authenticateAndGetProfile: authenticateAndGetProfile,
-            signup: signup
+            authenticateAndGetProfile: authenticateAndGetProfile
         }
     }
 })();

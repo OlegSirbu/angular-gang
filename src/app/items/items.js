@@ -2,20 +2,19 @@
     angular.module('app.items.module')
         .controller('ItemsController', ItemsController);
 
-    function ItemsController($scope, _, dataservices) {
+    function ItemsController($scope, _, dataservices, authService) {
         console.log('ItemsController', arguments);
         var vm = this;
-        vm.items = [];
-        vm.selectedItem = vm.items[0];
+
 
         vm.changeItem = function (item) {
-            console.log('change', item);
+            vm.activeMenu = item;
             vm.selectedItem = item;
         };
-        vm.approveCallback = function (i) {
+        vm.approveCallback = function () {
             console.log('approveCallback', vm.selectedItem);
         };
-        vm.rejectCallback = function (i) {
+        vm.rejectCallback = function () {
             console.log('rejectCallback', vm.selectedItem);
         };
         vm.declineCallback = function () {
@@ -24,10 +23,24 @@
         vm.pager = {};
         vm.setPage = setPage;
 
-
+        vm.logout = function (){
+            authService.logout();
+        };
+        
         dataservices.getOrders().then(function (data) {
             vm.allItems = data;
+            vm.descriptions = {
+                ConfigurationID: '8731293123-idname',
+                SheetWidth: 600,
+                SheetHeight: 500,
+                Width: 300,
+                Height: 200,
+                Brake: 10
+            };
+            vm.selectedItem = vm.allItems[0];
+            vm.activeMenu = vm.selectedItem;
             vm.setPage(1);
+
         });
 
         function setPage(page) {

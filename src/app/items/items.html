@@ -2,6 +2,7 @@
     <div class="container">
         <h2 class="header-page">
             HTML preview of the gang
+            <button class="btn btn-primary  pull-right" ng-click="vm.logout()">Log Out</button>
         </h2>
 
         <div class="row wrap">
@@ -10,7 +11,7 @@
                 <div class="list-group">
                     <div class="bs-sidebar list-group">
                         <ul class="nav nav-pills nav-stacked">
-                            <li class="list-group-item" ng-repeat="item in vm.items">
+                            <li class="list-group-item" ng-repeat="item in vm.items" ng-class="{active : vm.activeMenu === item}">
                                 <a ng-click="vm.changeItem(item)">{{item.name}}</a>
                             </li>
                         </ul>
@@ -63,10 +64,28 @@
 
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Description</h3>
+                        <h3 class="panel-title">Info</h3>
                     </div>
                     <div class="panel-body">
 
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Parameters</th>
+                                <th>Descriptions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="(key, value)  in vm.descriptions">
+                                <td>
+                                    {{key}}
+                                </td>
+                                <td>
+                                    {{value}}
+                                </td>
+                            </tr>
+                            </tbody>
+                            </table>
                     </div>
                 </div>
 
@@ -77,17 +96,15 @@
                     </div>
                     <div class="panel-body">
                         <ul class="list-group">
-                            <li class="list-group-item img-block" ng-repeat="pItem in vm.selectedItem.printItems">
+                            <li class="list-group-item list-number img-block" ng-repeat="pItem in vm.selectedItem.printItems">
                                 <img ng-src="{{pItem}}" alt="">
                             </li>
                         </ul>
                     </div>
                 </div>
 
-            </div>
-
         </div>
 
     </div>
-
+    </div>
 </div>
